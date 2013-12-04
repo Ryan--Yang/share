@@ -16,8 +16,8 @@ def has_build_dir():
     return True
 
 def get_target_os():
-    return get_symbolic_link_dir().rsplit('-')[-1]
-
+    #return get_symbolic_link_dir().rsplit('-')[-1]
+    return 'android'
 ###########################################################
 
 def check():
@@ -112,8 +112,8 @@ def setup():
     src_dir = root_dir + '/src'
     build_dir = src_dir + '/out/' + args.type.capitalize()
 
-    os.putenv('http_proxy', 'http://proxy-shz.intel.com:911')
-    os.putenv('https_proxy', 'https://proxy-shz.intel.com:911')
+    os.putenv('http_proxy', '127.0.0.1:8118')
+    os.putenv('https_proxy', '127.0.0.1:8118')
 
     if is_windows():
         path = os.getenv('PATH')

@@ -25,7 +25,7 @@ def warning(msg):
 
 def error(msg):
     print "[ERROR] " + msg + "!"
-    quit()
+    quit(1)
 
 def execute(command, silent=False, catch=False):
     if not silent:
@@ -35,12 +35,12 @@ def execute(command, silent=False, catch=False):
         result = commands.getstatusoutput(command)
         if result[0] != 0:
             error('Failed to execute')
-            quit()
+            quit(1)
         return result[1]
     else:
         if os.system(command):
             error('Failed to execute')
-            quit()
+            quit(1)
 
 def bashify(command):
     return 'bash -c "' + command + '"'
@@ -85,6 +85,7 @@ def shell_source(shell_cmd, use_bash=False):
 
 def get_symbolic_link_dir():
     script_path = os.getcwd() + '/' + sys.argv[0]
+    print script_path
     return os.path.split(script_path)[0]
 
 def backup_dir(new_dir):
